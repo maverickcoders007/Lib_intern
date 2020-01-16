@@ -5,9 +5,44 @@
 <title>Books borrowed</title>
 </head>
 <style>
+
+html
+{
+    height:100%;
+    width:100%;
+    font-size:16px;
+}
+
 body
 {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Barlow', sans-serif; 
+    margin:0;
+    
+}
+.header
+{
+    background-color:#13E2B3;
+    z-index:50;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    position:fixed;
+    top:0;
+    min-height:45px;
+    height:55px;
+    width:100%;
+    -webkit-box-shadow: 0 4px 4px -4px #c0c0c0;
+    -moz-box-shadow: 0 4px 4px -4px #c0c0c0;
+    box-shadow: 0 4px 4px -4px #c0c0c0;
+}
+
+.header #title
+{
+    color:white;
+    cursor: default;
+    margin:auto;
+    padding-bottom:5px;
+    font-size:1.5rem;
 }
 
 #title
@@ -32,7 +67,7 @@ body
     display:flex;
     flex-direction:column;
     justify-content:center;
-    border:1px solid black;
+    border:1.5px solid #13E2B3;
     padding:20px 10px;
 }
 
@@ -44,7 +79,7 @@ body
 
 form
 {
-    margin-top:50px;
+    margin-top:100px;
 }
 
 #text1
@@ -84,6 +119,16 @@ input[type="textbox"]
 </style>
 <body>
 
+<script>
+    if ( window.history.replaceState ) { //used to stop form resubmission when page is refreshed
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
+<div class="header">
+        <p id="title">GRD Memorial library</p>        
+</div>
+
 <form action="" method="POST">
 <center><input id="text1" type="textbox" autocomplete="off" placeholder="Enter your roll number to check for the books you have borrowed..." name="rno"><br><br>
 <input id="but" type="submit" name="click" value="Check books borrowed"></center>
@@ -116,7 +161,7 @@ mysqli_close($conn);
 
 </form>
 <br>
-<hr size="1.5px" color="#2C3E50">
+<hr size="1.5px" color="#2C3E50" width="95%">
 <br>    
 
 <?php
@@ -139,7 +184,7 @@ mysqli_close($conn);
     <?php }} ?>
 
 <center><span id="error"><?php if (mysqli_num_rows($result) == 0){
-    echo "No record found! Try again!";
+    echo "No record found!";
     }
 
 }
