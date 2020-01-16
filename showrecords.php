@@ -95,7 +95,7 @@ $rollno = $_POST["rno"];
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "library";
 
 $conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server
 
