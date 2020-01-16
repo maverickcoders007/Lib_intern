@@ -100,7 +100,9 @@ $dbname = "library";
 $conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    /*die("Connection failed: " . mysqli_connect_error());*/
+    header('Location:error.php');
+    exit;
 }
 
 $sql = "SELECT * FROM books WHERE Rollno='$rollno'";//SQL query 1
