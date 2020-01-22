@@ -20,6 +20,7 @@ body
     margin:0;
     cursor:default;
 }
+
 .header
 {
     background-color:#2C3E50;
