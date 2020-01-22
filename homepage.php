@@ -20,7 +20,6 @@ body
     margin:0;
     cursor:default;
 }
-
 .header
 {
     background-color:#2C3E50;
@@ -323,6 +322,8 @@ border:1px solid black;
 }
 
 </style>
+
+<body>
 <?php
 
 $servername = "localhost";
@@ -341,8 +342,6 @@ if (!$conn) {
 $sql = "SELECT * FROM newarrivals";//SQL query 1
 $result = mysqli_query($conn, $sql); //resultant array getting stored in this variable
 ?>
-
-<body>
 
 <script type="text/javascript">
 function bblink()

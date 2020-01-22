@@ -124,26 +124,24 @@ body
     background-color:#F8F9F9;
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
     align-items:flex-start;
+    justify-content:center;
     font-size:1.2rem;
 }
 
 .desc #desccontainer .content
 {
-    padding-top:1.5%;
     padding-left:5%;
-    margin-top:2%;
+    margin-bottom:3.5%;
 }
 
 .reqbutton
 {
     font-style:normal;
-    width:80%;
-    margin:auto;
-    margin-top:10%;
+    width:90%;
     display:flex;
     justify-content:center;
+    align-self:center;
     align-items:center;
     height:50px;
     background-color:#FB197C;
@@ -172,6 +170,7 @@ body
     <span class="content"><i><font color="#FB197C">Title:</font></i> <?php echo $row["title"]; ?></span>
     <span class="content"><i><font color="#FB197C">Author:</font></i> <?php echo $row["author"]; ?></span>
     <span class="content"><i><font color="#FB197C">Genre:</font></i> <?php echo $row["genre"]; ?></span>
+    <span class="content"><i><font color="#FB197C">Call number:</font></i> <?php echo $row["callno"]; ?></span>
     <span class="content"><i><font color="#FB197C">Accession number:</font></i> <?php echo $row["accno"]; ?></span>
     <div class="reqbutton">Request this book</div>
     </div>

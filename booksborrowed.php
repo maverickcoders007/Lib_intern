@@ -164,12 +164,18 @@ if (!$conn) {
     exit;
 }
 
-$sql = "SELECT * FROM books WHERE Rollno='$rollno'";//SQL query 1
-$sql2 = "SELECT Name FROM books WHERE Rollno='$rollno'"; //SQL query 2
-$result = mysqli_query($conn, $sql); //resultant array getting stored in this variable
-$resultname = mysqli_query($conn, $sql2);
+$stmt =$conn->prepare("SELECT * FROM books WHERE Rollno=?");//SQL query 1 - *to prevent sql injection we use prepared statements*
+$stmt->bind_param("s",$rollno);
+$stmt->execute();
+
+$result = $stmt->get_result(); //resultant array getting stored in this variable | get_result() is used to get resultant array after executing the prepared statement
+
+
+/*$sql="SELECT * from books where Rollno='$rollno'";
+$result=mysqli_query($conn,$sql);*/
 
 mysqli_close($conn);
+
 
 ?>
 
@@ -180,13 +186,18 @@ mysqli_close($conn);
 
 <?php
 
-    $name = mysqli_fetch_array($resultname); //get result as numeric array
+    $dummy=0; //dummy variable to print "Books borrowed by..." first time
     $count = mysqli_num_rows($result); // no of rows in result array
 
     if ($count > 0) { ?>
-    <center><u><span id="title">Books borrowed by <?php echo $name[0] ?></span></u></center><br><br>
 
-    <?php while($row = mysqli_fetch_assoc($result)){?>
+    <?php while($row = mysqli_fetch_assoc($result)){
+        if($dummy == 0)
+        {?>
+        <center><u><span id="title">Books borrowed by <?php echo $row["Name"] ?></span></u></center><br><br>
+        
+        <?php $dummy=1;
+        } ?>
 
     <center><div class="box">
 
@@ -195,7 +206,9 @@ mysqli_close($conn);
 
     </div></center>
 
-    <?php }} ?>
+    <?php }}
+    $stmt->close(); /*Closing the prepared query*/
+    ?>
 
 <center><span id="error"><?php if ($count == 0){
     echo "No record found!";
