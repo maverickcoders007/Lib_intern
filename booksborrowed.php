@@ -1,9 +1,27 @@
+<?php
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "library";
+
+$conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server (Procedural way)
+
+if (!$conn) {
+    /*die("Connection failed: " . mysqli_connect_error());*/
+    header('Location:error.php'); //redirect to this page in case of error
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <link href="https://fonts.googleapis.com/css?family=Barlow:300i,400,400i&display=swap" rel="stylesheet">
 <title>Genesis - Books borrowed</title>
-</head>
+</head> 
 <style>
 
 html
@@ -112,6 +130,8 @@ input[type="textbox"]
 
 #but,#but:focus
 {
+    display:flex;
+    justify-content:center;
     font-family: 'Barlow', sans-serif;
     font-size:1.2rem;
     width:40%;
@@ -143,6 +163,7 @@ input[type="textbox"]
         <p id="titlehead"><a href="homepage.php">G E N E S I S</a></p>
 </div>
 
+
 <form action="" method="POST">
 <center><input id="text1" type="textbox" autocomplete="off" placeholder="Enter your roll number to check for the books you have borrowed..." name="rno"><br><br>
 <input id="but" type="submit" name="click" value="Check books borrowed"></center>
@@ -151,18 +172,6 @@ input[type="textbox"]
 if(isset($_POST["click"]))
 {
 $rollno = $_POST["rno"];
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library";
-
-$conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server
-
-if (!$conn) {
-    /*die("Connection failed: " . mysqli_connect_error());*/
-    header('Location:error.php'); //redirect to this page in case of error
-    exit;
-}
 
 $stmt =$conn->prepare("SELECT * FROM books WHERE Rollno=?");//SQL query 1 - *to prevent sql injection we use prepared statements*
 $stmt->bind_param("s",$rollno);
@@ -217,7 +226,6 @@ mysqli_close($conn);
 }
 ?> </span></center>
 <br><br>
-
 </body>
 </html>
 

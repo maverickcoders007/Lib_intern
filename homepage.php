@@ -1,8 +1,27 @@
+<?php
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "library";
+
+$conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server (Procedural way)
+
+if (!$conn) {
+    /*die("Connection failed: " . mysqli_connect_error());*/
+    header('Location:error.php'); //redirect to this page in case of error
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <link href="https://fonts.googleapis.com/css?family=Barlow:300i,400,400i&display=swap" rel="stylesheet">
+<script src="homepage.js" type="text/javascript"></script>
 <title>Genesis - Home</title>
 </head>
 <style>
@@ -321,34 +340,109 @@ border:1px solid black;
         background:#FB197C; 
 }
 
+
+#overlay
+{
+    visibility:hidden;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:black;
+    opacity:0.8;
+    z-index:51;
+    pointer-events:auto;
+}
+
+#overlay #dummy
+{
+    position:fixed;
+    height:100%;
+    width:100%;
+    margin-top:0;
+    left:0;
+    right:0;
+    margin-bottom:0;
+    cursor:default;
+}
+
+#sideicon
+{
+    right:15px;
+    position:fixed;
+    background-color:#FB197C;
+    height:25px;
+    width:25px;
+    padding:10px 10px;
+    bottom:50px;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:100;
+    opacity:1;
+}
+
+#sideiconpopup
+{
+    visibility:hidden;
+    position:fixed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:white;
+    border-radius:8px;
+    right:15px;
+    bottom:105px;
+    height:35px;
+    width:90px;
+    z-index:90;
+    -webkit-box-shadow:1.8px 1.8px 3px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:1.8px 1.8px 3px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow:1.8px 1.8px 3px 1px #ccc;
+}
+
+#feedbackform
+{
+    display:flex;
+    align-self:center;
+    margin-left:25%;
+    margin-right:25%;
+    padding:10px 10px;
+    height:70%;
+    width:50%;
+    background-color:white;
+    position:fixed;
+    z-index:100;
+    border-radius:8px;
+    opacity:1;
+    visibility:hidden;
+}
+
 </style>
 
 <body>
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "library";
-
-$conn = mysqli_connect($servername, $username, $password,$dbname); //Creates connection to the database server
-
-if (!$conn) {
-    /*die("Connection failed: " . mysqli_connect_error());*/
-    header('Location:error.php'); //redirect to this page in case of error
-    exit;
-}
-
 $sql = "SELECT * FROM newarrivals";//SQL query 1
 $result = mysqli_query($conn, $sql); //resultant array getting stored in this variable
 ?>
 
-<script type="text/javascript">
-function bblink()
-{
-    window.location.href="booksborrowed.php";
-}
-</script>
+<div id="overlay">
+<p id="dummy" onclick="closefeedback()"></p>
+</div>
+
+<div id="sideicon" onmouseover="popup()" onmouseout="popupclose()" onclick="feedback()">
+<img src="feedback.png" height="100%" width="100%">
+</div>
+
+<div id="sideiconpopup">
+Feedback
+</div>
+
+<div id="feedbackform">
+Feedback form
+</div>
+
+
 
 <div class="header">
         <p id="titlehead">G E N E S I S</p>        
@@ -414,7 +508,7 @@ Event boxes go here... (But before that create events table in database)
 <p class="desc">Here are some other library related stuff you can do!</p>
 
 <div class="others">
-<div class="othbutton">Suggest a book</div>
+<div class="othbutton" onclick="gotolink('suggabook.php')">Suggest a book</div>
 
 <div class="othbutton">Donate a book</div>
 
@@ -424,11 +518,18 @@ Event boxes go here... (But before that create events table in database)
 
 </div>
 
+<script type="text/javascript">
+function gotolink(url)
+{
+    /*alert(url);*/
+    window.location.href=url;
+}
+</script>
+
 <div class="footer">
 <span id="clg">PSG College of Technology</span>
     <a href="#">About</a>
     <a href="#">Contact</a>
-    <a href="#">Feedback</a>
     <a href="http://events.psgtech.edu/library/#" target="_blank">Go to library website</a>
 </div>
 
