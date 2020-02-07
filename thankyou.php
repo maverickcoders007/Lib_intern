@@ -16,7 +16,9 @@ body
 <br>
 <br>
 <center>
-<br><br>
+<img src="ty.png" height="40%" width="60%" style="margin-top:-25px">
+<br>
+<br>
 Thank you for your submission! <a href="homepage.php">Click here</a> to go to homepage! 
 </center>
 </body>

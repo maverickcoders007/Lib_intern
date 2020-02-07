@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <link href="https://fonts.googleapis.com/css?family=Barlow:300i,400,400i&display=swap" rel="stylesheet">
 <title>Genesis - Suggest a book</title>
-<script src="sugg.js" type="text/javascript"></script>
+<script src="donate.js" type="text/javascript"></script>
 </head>
 <style>
 
@@ -157,7 +157,7 @@ opacity:80%;
     visibility:hidden;
     width:70%;
     margin:auto;
-    margin-top:-180px;
+    margin-top:-60px;
     display:flex;
     font-size:1.2rem;
     /*background-color:green;*/
@@ -187,17 +187,17 @@ opacity:80%;
 
 
 <div id="formholder">
-    <div id="titlehead"><font color="#FB197C">SUGGEST A BOOK</font> FOR THE LIBRARY</div>
+    <div id="titlehead"><font color="#FB197C">DONATE A BOOK</font> FOR THE LIBRARY</div>
 
     <div id="thanks">
     <img src="ty.png" height="50%" width="70%" style="margin-top:-25px">
     <br>
-    <i>Thank you for your suggestion!</i>
+    <i>Thank you for your submission!</i>
     <a href="homepage.php" style="color:#FB197C">Go to homepage</a>
 
     </div>  
 
-    <form id="suggform"> <!--Return false is used to prevent from reloading the page-->
+    <form id="donform"> <!--Return false is used to prevent from reloading the page-->
 
     <div class="content">
     <span class="label">Enter your roll number</span>
@@ -218,26 +218,9 @@ opacity:80%;
     <input id="author" type="textbox" spellcheck="false"autocomplete="off" placeholder="Author">
     </div>
 
-    <div class="content">
-    <span class="label">Related links (ex - amazon, goodreads...)</span>
-    <span class="req">This field is not mandatory. It is just to help us easily find the book which you are suggesting.</span>
-    <input id="rl1" type="textbox" autocomplete="off" spellcheck="false" placeholder="Related link 1">
-    <input id="rl2" type="textbox" autocomplete="off" spellcheck="false" placeholder="Related link 2">
-    </div>
-
-    <input id="button" name="click" type="button" value="Suggest" onclick="yeahsubmit()"><!--AJAX call for submission-->
+    <input id="button" name="click" type="button" value="Submit" onclick="yeahsubmit()"><!--AJAX call for submission-->
     </form>
 </div>
-
-<!--<script type="text/javascript">
-
-function thankyou()
-{
-var formholder=document.getElementById("formholder");
-formholder.style.backgroundColor="blue";
-}
-</script>-->
-
 
 </body>
 </html>

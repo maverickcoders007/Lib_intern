@@ -510,7 +510,7 @@ Event boxes go here... (But before that create events table in database)
 <div class="others">
 <div class="othbutton" onclick="gotolink('suggabook.php')">Suggest a book</div>
 
-<div class="othbutton">Donate a book</div>
+<div class="othbutton" onclick="gotolink('donate.php')">Donate a book</div>
 
 <div class="othbutton">Request a book</div>
 
