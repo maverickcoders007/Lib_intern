@@ -39,7 +39,7 @@ body
 }
 .header
 {
-    background-color:#2C3E50;
+    background-color:black;
     z-index:50;
     display:flex;
     flex-direction: row;
@@ -173,7 +173,7 @@ if(isset($_POST["click"]))
 {
 $rollno = $_POST["rno"];
 
-$stmt =$conn->prepare("SELECT * FROM books WHERE Rollno=?");//SQL query 1 - *to prevent sql injection we use prepared statements*
+$stmt =$conn->prepare("SELECT * FROM borrowedbooks WHERE Rollno=?");//SQL query 1 - *to prevent sql injection we use prepared statements*
 $stmt->bind_param("s",$rollno);
 $stmt->execute();
 

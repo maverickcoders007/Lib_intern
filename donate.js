@@ -1,3 +1,5 @@
+var url;
+
 function createreq()
 {
     var xhttp;
@@ -11,6 +13,12 @@ function createreq()
     }
 
     return xhttp;
+}
+
+function gotolink(url)
+{
+    /*alert(url);*/
+    window.location.href=url;
 }
 
 function yeahsubmit()   
@@ -33,6 +41,8 @@ function yeahsubmit()
       {
           /*window.location.href="thankyou.php";*/
           window.scrollTo(0, 0); //Scroll to top
+          document.getElementById("titleheadinside").style.visibility="hidden";
+          document.getElementById("backicon").style.visibility="hidden";
           document.getElementById("thanks").style.visibility="visible";
           document.getElementById("donform").style.visibility="hidden";
       }

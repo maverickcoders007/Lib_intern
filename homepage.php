@@ -21,7 +21,6 @@ if (!$conn) {
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <link href="https://fonts.googleapis.com/css?family=Barlow:300i,400,400i&display=swap" rel="stylesheet">
-<script src="homepage.js" type="text/javascript"></script>
 <title>Genesis - Home</title>
 </head>
 <style>
@@ -31,6 +30,7 @@ html
     height:100%;
     width:100%;
     font-size:16px;
+    /*scroll-behavior:smooth;*/
 }
 
 body
@@ -39,10 +39,11 @@ body
     margin:0;
     cursor:default;
 }
-.header
+
+#header
 {
-    background-color:#2C3E50;
-    z-index:50;
+    background-color:black;
+    z-index:150;
     display:flex;
     flex-direction: row;
     align-items: center;
@@ -54,9 +55,10 @@ body
     -webkit-box-shadow: 0 4px 4px -4px #c0c0c0;
     -moz-box-shadow: 0 4px 4px -4px #c0c0c0;
     box-shadow: 0 4px 4px -4px #c0c0c0;
+    transition: top 0.25s;
 }
 
-.header #titlehead
+#header #titlehead
 {
     color:white;
     cursor: default;
@@ -64,6 +66,14 @@ body
     padding-bottom:5px;
     font-size:1.5rem;
     font-style:italic;
+}
+
+#header #list
+{
+    bottom:25%; /*For internet explorer*/
+    position:absolute;
+    margin-left:2.5%;
+    cursor:pointer;
 }
 
 .label
@@ -273,38 +283,59 @@ font-style:italic;
     opacity:80%;
 }
 
-.footer
+#footer
 {
+    /*visibility:hidden;*/
+    bottom:0;
     font-size:1rem;
-    position:fixed;
-    margin-top:5%;
+    position:relative;
+    top:5%;
     display:flex;
     align-items:center;
     justify-content:flex-end;
     width:100%;
-    background-color:#2C3E50;
+    background-color:black;
     color:white;
-    height:35px;
+    height:150px;
     flex-direction:row;
-    bottom:0;
 }
 
-.footer #clg
+#footer #clg
 {
-    margin-right:auto;/*To align flexbox item to left when justify-content is set to flex-end*/
+    position:absolute;
+    left:0;
+    /*margin-right:auto;/*To align flexbox item to left when justify-content is set to flex-end*/
     font-style:italic;
     margin-left:2.5%;
 }
 
-.footer a,a:visited
+#footer #links
 {
+    display:flex;
+    flex-direction:column;
     margin-right:2.5%;
+    width:15%;
+    align-items:flex-start;
+}
+
+#footer p
+{
+    margin-top:5px;
+    margin-bottom:5px;
+    cursor:pointer; 
+    transition:color 0.25s ease;
+
+}
+
+#footer a,a:visited
+{
+    padding:5px 0;
     text-decoration:none;
     color:white;
     transition:color 0.25s ease;
 }
 
-.footer a:hover
+#footer a:hover,#footer p:hover
 {
     color:#FB197C;
 }
@@ -351,7 +382,7 @@ border:1px solid black;
     bottom:0;
     background-color:black;
     opacity:0.8;
-    z-index:51;
+    z-index:151;
     pointer-events:auto;
 }
 
@@ -369,20 +400,17 @@ border:1px solid black;
 
 #sideicon
 {
+    opacity:0;
     right:15px;
     position:fixed;
-    background-color:#FB197C;
-    height:25px;
-    width:25px;
-    padding:10px 10px;
-    bottom:50px;
-    border-radius:8px;
-    cursor:pointer;
-    z-index:100;
-    opacity:1;
+    border-radius:50px;
+    /*padding:10px 10px;*/
+    bottom:20px;
+    z-index:80;
+    transition:opacity 0.1s ease-in-out;
 }
 
-#sideiconpopup
+/*#sideiconpopup
 {
     visibility:hidden;
     position:fixed;
@@ -396,10 +424,10 @@ border:1px solid black;
     height:35px;
     width:90px;
     z-index:90;
-    -webkit-box-shadow:1.8px 1.8px 3px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow:1.8px 1.8px 3px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+    -webkit-box-shadow:1.8px 1.8px 3px 1px #ccc;  
+    -moz-box-shadow:1.8px 1.8px 3px 1px #ccc; 
     box-shadow:1.8px 1.8px 3px 1px #ccc;
-}
+}*/
 
 #feedbackform
 {
@@ -412,14 +440,58 @@ border:1px solid black;
     width:50%;
     background-color:white;
     position:fixed;
-    z-index:100;
+    z-index:155;
     border-radius:8px;
     opacity:1;
     visibility:hidden;
 }
 
-</style>
+.mysidebar
+{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    overflow-x:hidden; /*very important */
+    display:flex;
+    flex-wrap:nowrap;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:0;
+    z-index:155;
+    background-color:white; /*or #FB197C*/
+    transition: 0.4s ease;
+}
 
+.mysidebar a,a:visited
+{
+    text-align:center;
+    height:25px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-decoration:none;
+    color:black;
+    font-size:1.2rem;
+    margin-bottom:25px;
+    opacity:1;
+    /*display:block;*/
+    transition:0.25s ease;
+}
+
+.mysidebar a:hover
+{
+    color:#FB197C;
+}
+
+.mysidebar #active
+{
+    color:#FB197C;
+    cursor:default;
+    
+}
+
+</style>
 <body>
 <?php
 $sql = "SELECT * FROM newarrivals";//SQL query 1
@@ -430,13 +502,11 @@ $result = mysqli_query($conn, $sql); //resultant array getting stored in this va
 <p id="dummy" onclick="closefeedback()"></p>
 </div>
 
-<div id="sideicon" onmouseover="popup()" onmouseout="popupclose()" onclick="feedback()">
-<img src="feedback.png" height="100%" width="100%">
-</div>
+<img onclick="totop()" src="top.png" id="sideicon" height="50px" width="50px">
 
-<div id="sideiconpopup">
+<!--<div id="sideiconpopup">
 Feedback
-</div>
+</div>-->
 
 <div id="feedbackform">
 Feedback form
@@ -444,8 +514,18 @@ Feedback form
 
 
 
-<div class="header">
+<div id="header">
+        <img id="list" src="list.png" onclick="opensb()" height="25px" width="30px"> <!--height="25px" width="30px"-->
         <p id="titlehead">G E N E S I S</p>        
+</div>
+
+<div class="mysidebar" id="sidebar">
+<a id="active">HOME</a>
+  <a href="booksborrowed.php">BOOKS BORROWED</a>
+  <a href="#">NEW ARRIVALS</a>
+  <a href="#">GENRES</a>
+  <a href="suggabook.php">SUGGEST A BOOK</a>
+  <a href="donate.php">DONATE A BOOK</a>
 </div>
 
 <p class="label">New Arrivals</p>
@@ -512,26 +592,25 @@ Event boxes go here... (But before that create events table in database)
 
 <div class="othbutton" onclick="gotolink('donate.php')">Donate a book</div>
 
-<div class="othbutton">Request a book</div>
+<!--<div class="othbutton">Request a book</div>-->
 
 <div class="othbutton">Ask a question</div>
-
 </div>
 
-<script type="text/javascript">
-function gotolink(url)
-{
-    /*alert(url);*/
-    window.location.href=url;
-}
-</script>
+<div id="dummy"></div>
 
-<div class="footer">
+<div id="footer">
 <span id="clg">PSG College of Technology</span>
+<div id="links">
     <a href="#">About</a>
     <a href="#">Contact</a>
+    <p onclick="feedback()">Feedback</p>
     <a href="http://events.psgtech.edu/library/#" target="_blank">Go to library website</a>
 </div>
+</div>
+
+<script src="homepage.js" type="text/javascript">
+</script>
 
 </body>
 </html>

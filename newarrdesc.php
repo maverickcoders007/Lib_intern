@@ -49,7 +49,7 @@ body
 }
 .header
 {
-    background-color:#2C3E50;
+    background-color:black;
     z-index:50;
     display:flex;
     flex-direction: row;
@@ -103,8 +103,8 @@ body
 
 .desc #imgcontainer
 {
-    height:75%;
-    width:250px;
+    height:80%;
+    width:260px;
 }
 
 .desc #imgcontainer #img
@@ -117,6 +117,7 @@ body
 .desc #desccontainer
 {
     margin-left:2%;
+    padding:1% 0;
     height:75%;
     width:60%;
     border:2px solid #EBEDEF;
@@ -132,7 +133,7 @@ body
 .desc #desccontainer .content
 {
     padding-left:5%;
-    margin-bottom:3.5%;
+    margin-bottom:3%;
 }
 
 .reqbutton

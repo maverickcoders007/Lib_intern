@@ -28,7 +28,7 @@ body
 }
 .header
 {
-    background-color:#2C3E50;
+    background-color:black;
     z-index:50;
     display:flex;
     flex-direction: row;

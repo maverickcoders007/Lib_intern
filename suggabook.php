@@ -24,7 +24,7 @@ body
 }
 .header
 {
-    background-color:#2C3E50;
+    background-color:black;
     z-index:50;
     display:flex;
     flex-direction: row;
@@ -65,16 +65,17 @@ body
     padding:2% 2%;
     background-color:white;
     margin:auto;
-    margin-top:80px;
+    margin-top:100px;
     -webkit-box-shadow: 0px 0px 3px 1px #D5D8DC;
     -moz-box-shadow: 0 4px 3px 1px #D5D8DC;
     box-shadow: 0px 0px 3px 1px #D5D8DC;
     margin-bottom:2.5%;
 }
 
-#formholder #titlehead
+#formholder #titleheadinside
 {
-    margin-top:2%;
+    visibility:visible;
+    margin-top:0;
     font-size:1.3rem;
     margin-bottom:7%;
     letter-spacing:1px;
@@ -155,9 +156,9 @@ opacity:80%;
 {
     position:absolute;
     visibility:hidden;
-    width:70%;
+    width:50%;
     margin:auto;
-    margin-top:-180px;
+    top:25%;
     display:flex;
     font-size:1.2rem;
     /*background-color:green;*/
@@ -169,6 +170,15 @@ opacity:80%;
 #thanks a 
 {
     margin-top:5%;
+}
+
+#formholder #backicon
+{
+    display:flex;
+    align-self:flex-start;
+    height:45px;
+    z-index:49;
+    cursor:pointer;
 }
 
 </style>
@@ -187,10 +197,11 @@ opacity:80%;
 
 
 <div id="formholder">
-    <div id="titlehead"><font color="#FB197C">SUGGEST A BOOK</font> FOR THE LIBRARY</div>
+<img id="backicon" src="back.png" onclick="gotolink('homepage.php')">
+    <div id="titleheadinside"><font color="#FB197C">SUGGEST A BOOK</font> FOR THE LIBRARY</div>
 
     <div id="thanks">
-    <img src="ty.png" height="50%" width="70%" style="margin-top:-25px">
+    <img src="ty.png" height="60%" width="80%">
     <br>
     <i>Thank you for your suggestion!</i>
     <a href="homepage.php" style="color:#FB197C">Go to homepage</a>
